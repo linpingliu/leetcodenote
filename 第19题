@@ -1,0 +1,32 @@
+class Solution {
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        //双指针法，先使得两个指针之间的距离为n；
+
+        //头部加一个空节点，是为了防止开始就是一个节点的链表；
+        ListNode first = new ListNode(0);
+
+        first.next = head;
+        ListNode p = first;
+        ListNode q = first;
+        int i = 0;
+        int j = 0;
+        
+        while ( q.next != null){
+           if(j-i< n){
+               j++;
+               q = q.next;
+           }
+           else if (j-i == n){
+               j++;
+               i++;
+               p=p.next;
+               q=q.next;
+           }
+        }
+    
+        p.next = p.next.next;
+        return first.next;
+
+
+    }
+}
